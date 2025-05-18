@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EA2: Regression mit FFNN</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0/dist/tf.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+<h1>Regression mit FFNN – EA2</h1>
+
+<section id="r1">
+    <h2>R1: Datensätze (links ohne, rechts mit Rauschen)</h2>
+    <div class="row">
+        <div><div id="plot-data-clean"></div></div>
+        <div><div id="plot-data-noisy"></div></div>
+    </div>
+</section>
+
+<section id="r2">
+    <h2>R2: Vorhersage Modell ohne Rauschen</h2>
+    <div class="row">
+        <div><div id="prediction-clean-train"></div></div>
+        <div><div id="prediction-clean-test"></div></div>
+    </div>
+    <p id="loss-clean"></p>
+</section>
+
+<section id="r3">
+    <h2>R3: Best-Fit Modell mit Rauschen</h2>
+    <div class="row">
+        <div><div id="prediction-best-train"></div></div>
+        <div><div id="prediction-best-test"></div></div>
+    </div>
+    <p id="loss-best"></p>
+</section>
+
+<section id="r4">
+    <h2>R4: Over-Fit Modell mit Rauschen</h2>
+    <div class="row">
+        <div><div id="prediction-overfit-train"></div></div>
+        <div><div id="prediction-overfit-test"></div></div>
+    </div>
+    <p id="loss-overfit"></p>
+</section>
+
+<section id="discussion">
+    <h2>Diskussion</h2>
+    <p>
+        Die Modelle zeigen deutlich den Unterschied zwischen gutem Fit und Overfitting.
+        Beim verrauschten Datensatz wurde das beste Modell mit <code>n=100</code> und etwa
+        <code>100</code> Epochen trainiert. Das Overfit-Modell mit <code>500</code> Epochen
+        passt sich zu stark an das Rauschen an, was im Test-Loss sichtbar wird.
+    </p>
+</section>
+
+<section id="doc">
+    <h2>Dokumentation</h2>
+    <h3>1) Technisch</h3>
+    <ul>
+        <li><strong>TensorFlow.js:</strong> zum Erstellen und Trainieren des FFNN</li>
+        <li><strong>Plotly.js:</strong> zur Darstellung aller Diagramme</li>
+    </ul>
+
+    <h3>2) Fachlich</h3>
+    <p>
+        Die Funktion <code>y(x)</code> wurde auf [-2,2] mit 100 Punkten abgetastet.
+        Gaussian Noise mit Varianz 0.05 wurde zu y addiert. Das Modell besteht aus
+        2 Hidden-Layers mit je 100 Neuronen und ReLU-Aktivierung. Für das beste Modell
+        wurden 100 Epochen genutzt, für Overfitting 500. Die MSE-Werte belegen den
+        Generalisierungseffekt.
+    </p>
+</section>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
