@@ -3,76 +3,125 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EA2: Regression mit FFNN</title>
+    <title>EA2 – Regression mit FFNN</title>
+    <link rel="stylesheet" href="assets/style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0/dist/tf.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <link rel="stylesheet" href="assets/style.css" />
+    <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
 </head>
 <body>
-<h1>Regression mit FFNN – EA2</h1>
-
-<section id="r1">
-    <h2>R1: Datensätze (links ohne, rechts mit Rauschen)</h2>
-    <div class="row">
-        <div><div id="plot-data-clean"></div></div>
-        <div><div id="plot-data-noisy"></div></div>
-    </div>
-</section>
-
-<section id="r2">
-    <h2>R2: Vorhersage Modell ohne Rauschen</h2>
-    <div class="row">
-        <div><div id="prediction-clean-train"></div></div>
-        <div><div id="prediction-clean-test"></div></div>
-    </div>
-    <p id="loss-clean"></p>
-</section>
-
-<section id="r3">
-    <h2>R3: Best-Fit Modell mit Rauschen</h2>
-    <div class="row">
-        <div><div id="prediction-best-train"></div></div>
-        <div><div id="prediction-best-test"></div></div>
-    </div>
-    <p id="loss-best"></p>
-</section>
-
-<section id="r4">
-    <h2>R4: Over-Fit Modell mit Rauschen</h2>
-    <div class="row">
-        <div><div id="prediction-overfit-train"></div></div>
-        <div><div id="prediction-overfit-test"></div></div>
-    </div>
-    <p id="loss-overfit"></p>
-</section>
-
-<section id="discussion">
-    <h2>Diskussion</h2>
-    <p>
-        Die Modelle zeigen deutlich den Unterschied zwischen gutem Fit und Overfitting.
-        Beim verrauschten Datensatz wurde das beste Modell mit <code>n=100</code> und etwa
-        <code>100</code> Epochen trainiert. Das Overfit-Modell mit <code>500</code> Epochen
-        passt sich zu stark an das Rauschen an, was im Test-Loss sichtbar wird.
-    </p>
-</section>
-
-<section id="doc">
-    <h2>Dokumentation</h2>
-    <h3>1) Technisch</h3>
+<nav class="top-nav">
     <ul>
-        <li><strong>TensorFlow.js:</strong> zum Erstellen und Trainieren des FFNN</li>
-        <li><strong>Plotly.js:</strong> zur Darstellung aller Diagramme</li>
+        <li><a href="#r1">R1: Datensätze</a></li>
+        <li><a href="#r2">R2: Modell ohne Rauschen</a></li>
+        <li><a href="#r3">R3: Best-Fit</a></li>
+        <li><a href="#r4">R4: Overfitting</a></li>
+        <li><a href="#discussion">Diskussion</a></li>
+        <li><a href="#doc">Dokumentation</a></li>
     </ul>
+</nav>
 
-    <h3>2) Fachlich</h3>
-    <p>
-        Die Funktion <code>y(x)</code> wurde auf [-2,2] mit 100 Punkten abgetastet.
-        Gaussian Noise mit Varianz 0.05 wurde zu y addiert. Das Modell besteht aus
-        2 Hidden-Layers mit je 100 Neuronen und ReLU-Aktivierung. Für das beste Modell
-        wurden 100 Epochen genutzt, für Overfitting 500. Die MSE-Werte belegen den
-        Generalisierungseffekt.
-    </p>
-</section>
+<header>
+    <h1>EA2 – Regression mit FFNN</h1>
+</header>
+
+<main>
+    <section id="r1">
+        <h2>R1: Datensätze (links ohne, rechts mit Rauschen)</h2>
+        <div class="row">
+            <div>
+                <div id="plot-data-clean"></div>
+                <p id="plot-data-clean-title" class="plot-title"></p>
+            </div>
+            <div>
+                <div id="plot-data-noisy"></div>
+                <p id="plot-data-noisy-title" class="plot-title"></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="r2">
+        <h2>R2: Vorhersage Modell ohne Rauschen</h2>
+        <div class="row">
+            <div>
+                <div id="prediction-clean-train"></div>
+                <p id="prediction-clean-train-title" class="plot-title"></p>
+            </div>
+            <div>
+                <div id="prediction-clean-test"></div>
+                <p id="prediction-clean-test-title" class="plot-title"></p>
+            </div>
+        </div>
+        <p id="loss-clean"></p>
+    </section>
+
+    <section id="r3">
+        <h2>R3: Best-Fit Modell mit Rauschen</h2>
+        <div class="row">
+            <div>
+                <div id="prediction-best-train"></div>
+                <p id="prediction-best-train-title" class="plot-title"></p>
+            </div>
+            <div>
+                <div id="prediction-best-test"></div>
+                <p id="prediction-best-test-title" class="plot-title"></p>
+            </div>
+        </div>
+        <p id="loss-best"></p>
+    </section>
+
+    <section id="r4">
+        <h2>R4: Over-Fit Modell mit Rauschen</h2>
+        <div class="row">
+            <div>
+                <div id="prediction-overfit-train"></div>
+                <p id="prediction-overfit-train-title" class="plot-title"></p>
+            </div>
+            <div>
+                <div id="prediction-overfit-test"></div>
+                <p id="prediction-overfit-test-title" class="plot-title"></p>
+            </div>
+        </div>
+        <p id="loss-overfit"></p>
+    </section>
+
+    <section id="discussion" class="info-section">
+        <div class="info-header">
+            <span class="icon">🧠</span>
+            <h2>Diskussion</h2>
+        </div>
+        <p>
+            Die Ergebnisse zeigen klar, wie sich die Datenqualität auf die Generalisierungsfähigkeit neuronaler Netze auswirkt.
+            Ohne Rauschen war der Trainings- und Testfehler nahezu identisch, was auf ein gut generalisierendes Modell hinweist.
+            Mit Rauschen hingegen war eine stärkere Differenz sichtbar, besonders bei längerem Training.
+            Das Overfitting-Modell passte sich zu stark an das Rauschen an, was sich in einem signifikant höheren Testfehler äußert.
+            Die Reduktion der Epochenzahl konnte das Overfitting verhindern und die Generalisierungsleistung verbessern.
+            Die Visualisierungen zeigen die Auswirkungen deutlich, insbesondere in den Testdaten.
+        </p>
+    </section>
+
+    <section id="doc" class="info-section">
+        <div class="info-header">
+            <span class="icon">🛠️</span>
+            <h2>Dokumentation</h2>
+        </div>
+
+        <h3>1) Technisch</h3>
+        <ul>
+            <li><strong>TensorFlow.js:</strong> Modellierung, Training, Evaluation des FFNN</li>
+            <li><strong>Plotly.js:</strong> Interaktive Visualisierung der Daten und Vorhersagen</li>
+            <li><strong>HTML + CSS:</strong> Struktur, Design und Interaktion der Webanwendung</li>
+        </ul>
+
+        <h3>2) Fachlich</h3>
+        <p>
+            Ziel war es, die Approximation einer komplexen Funktion mit einem FFNN zu demonstrieren.
+            Die Architektur bestand aus zwei verborgenen Schichten mit je 100 Neuronen und ReLU-Aktivierung.
+            Die Regression erfolgte mit einem linearen Ausgangsneuron und MSE als Verlustfunktion.
+            Durch gezielte Variation der Trainingsdauer wurden Underfitting, Best-Fit und Overfitting beobachtet.
+            Die daraus gewonnenen Einsichten wurden durch Diagramme unterstützt.
+        </p>
+    </section>
+</main>
 
 <script src="assets/main.js"></script>
 </body>

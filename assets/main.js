@@ -37,21 +37,50 @@ function plotScatter(id, title, train, test) {
             x: train.map(d => d.x),
             y: train.map(d => d.y),
             mode: 'markers',
-            name: 'Train',
-            marker: { color: 'blue' }
+            name: 'Trainingsdaten',
+            marker: {
+                color: '#1f77b4',
+                size: 6,
+                opacity: 0.8
+            },
+            type: 'scatter'
         },
         {
             x: test.map(d => d.x),
             y: test.map(d => d.y),
             mode: 'markers',
-            name: 'Test',
-            marker: { color: 'red' }
+            name: 'Testdaten',
+            marker: {
+                color: '#ff7f0e',
+                size: 6,
+                opacity: 0.8
+            },
+            type: 'scatter'
         }
     ], {
-        title,
-        xaxis: { title: 'x' },
-        yaxis: { title: 'y' }
+        xaxis: {
+            title: 'x',
+            zeroline: false
+        },
+        yaxis: {
+            title: 'y',
+            zeroline: false
+        },
+        legend: {
+            orientation: 'h',
+            xanchor: 'center',
+            x: 0.5,
+            y: -0.2
+        },
+        margin: { t: 20 },
+        font: { family: 'Segoe UI, sans-serif', size: 14 },
+        plot_bgcolor: '#ffffff',
+        paper_bgcolor: '#ffffff'
     });
+
+    // Setzt Titel unterhalb des Plots in ein <p> mit gleicher ID + "-title"
+    const titleEl = document.getElementById(id + "-title");
+    if (titleEl) titleEl.textContent = title;
 }
 
 async function trainModel(dataTrain, epochs = 100) {
@@ -76,21 +105,35 @@ async function evaluateAndPlot(model, id, data, label) {
             x: data.map(d => d.x),
             y: data.map(d => d.y),
             mode: 'markers',
-            name: label + ' Real',
-            marker: { color: 'gray' }
+            name: 'Reale Werte',
+            marker: { color: '#343a40', size: 6, opacity: 0.6 },
+            type: 'scatter'
         },
         {
             x: data.map(d => d.x),
             y: predYs.map(p => p[0]),
             mode: 'lines',
-            name: label + ' Prediction',
-            line: { color: 'green' }
+            name: 'Vorhersage',
+            line: { color: '#2ca02c', width: 3 }
         }
     ], {
-        title: `${label}: Prediction vs. Real`,
         xaxis: { title: 'x' },
-        yaxis: { title: 'y' }
+        yaxis: { title: 'y' },
+        legend: {
+            orientation: 'h',
+            xanchor: 'center',
+            x: 0.5,
+            y: -0.2
+        },
+        margin: { t: 20 },
+        font: { family: 'Segoe UI, sans-serif', size: 14 },
+        plot_bgcolor: '#ffffff',
+        paper_bgcolor: '#ffffff'
     });
+
+    // Setzt Titel unterhalb des Plots
+    const titleEl = document.getElementById(id + "-title");
+    if (titleEl) titleEl.textContent = `${label} – Vorhersage vs. Reale Werte`;
 
     const ys = tf.tensor2d(data.map(d => [d.y]));
     const mse = tf.losses.meanSquaredError(ys, preds).dataSync()[0];
