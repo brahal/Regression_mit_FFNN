@@ -32,6 +32,10 @@ y(x) = 0.5·(x + 0.8)·(x + 1.8)·(x − 0.2)·(x − 0.3)·(x − 1.9) + 1
     •	TensorFlow.js
     •	Plotly.js
 
+## Deployment
+Die Seite ist unter https://happy-ocean-0e3ade81e.6.azurestaticapps.net/ erreichbar.
+
+
 ## 👩‍💻 Autorin
 
 ### Basma Rahal
