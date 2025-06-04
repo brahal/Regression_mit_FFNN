@@ -28,12 +28,14 @@
     <section id="r1">
         <h2>R1: Datensätze (links ohne, rechts mit Rauschen)</h2>
         <div class="row">
-            <div>
+            <div class="plot-container">
                 <div id="plot-data-clean"></div>
+                <div class="spinner" data-target="plot-data-clean"></div>
                 <p id="plot-data-clean-title" class="plot-title"></p>
             </div>
-            <div>
+            <div class="plot-container">
                 <div id="plot-data-noisy"></div>
+                <div class="spinner" data-target="plot-data-noisy"></div>
                 <p id="plot-data-noisy-title" class="plot-title"></p>
             </div>
         </div>
@@ -42,12 +44,14 @@
     <section id="r2">
         <h2>R2: Vorhersage Modell ohne Rauschen</h2>
         <div class="row">
-            <div>
+            <div class="plot-container">
                 <div id="prediction-clean-train"></div>
+                <div class="spinner" data-target="prediction-clean-train"></div>
                 <p id="prediction-clean-train-title" class="plot-title"></p>
             </div>
-            <div>
+            <div class="plot-container">
                 <div id="prediction-clean-test"></div>
+                <div class="spinner" data-target="prediction-clean-test"></div>
                 <p id="prediction-clean-test-title" class="plot-title"></p>
             </div>
         </div>
@@ -57,12 +61,14 @@
     <section id="r3">
         <h2>R3: Best-Fit Modell mit Rauschen</h2>
         <div class="row">
-            <div>
+            <div class="plot-container">
                 <div id="prediction-best-train"></div>
+                <div class="spinner" data-target="prediction-best-train"></div>
                 <p id="prediction-best-train-title" class="plot-title"></p>
             </div>
-            <div>
+            <div class="plot-container">
                 <div id="prediction-best-test"></div>
+                <div class="spinner" data-target="prediction-best-test"></div>
                 <p id="prediction-best-test-title" class="plot-title"></p>
             </div>
         </div>
@@ -72,12 +78,14 @@
     <section id="r4">
         <h2>R4: Over-Fit Modell mit Rauschen</h2>
         <div class="row">
-            <div>
+            <div class="plot-container">
                 <div id="prediction-overfit-train"></div>
+                <div class="spinner" data-target="prediction-overfit-train"></div>
                 <p id="prediction-overfit-train-title" class="plot-title"></p>
             </div>
-            <div>
+            <div class="plot-container">
                 <div id="prediction-overfit-test"></div>
+                <div class="spinner" data-target="prediction-overfit-test"></div>
                 <p id="prediction-overfit-test-title" class="plot-title"></p>
             </div>
         </div>
@@ -89,15 +97,19 @@
             <span class="icon">🧠</span>
             <h2>Diskussion</h2>
         </div>
-        <p>
-            Die Ergebnisse zeigen klar, wie sich die Datenqualität auf die Generalisierungsfähigkeit neuronaler Netze auswirkt.
-            Ohne Rauschen war der Trainings- und Testfehler nahezu identisch, was auf ein gut generalisierendes Modell hinweist.
-            Mit Rauschen hingegen war eine stärkere Differenz sichtbar, besonders bei längerem Training.
-            Das Overfitting-Modell passte sich zu stark an das Rauschen an, was sich in einem signifikant höheren Testfehler äußert.
-            Die Reduktion der Epochenzahl konnte das Overfitting verhindern und die Generalisierungsleistung verbessern.
-            Die Visualisierungen zeigen die Auswirkungen deutlich, insbesondere in den Testdaten.
-        </p>
+        <div class="discussion-points">
+            <p><span class="label">R1:</span> Die ursprünglichen Datensätze zeigen den klaren Unterschied zwischen strukturierten Werten (ohne Rauschen) und gestreuten, verrauschten Messpunkten. Die rechte Darstellung simuliert realistische Messfehler in praktischen Anwendungsfällen.</p>
+
+            <p><span class="label">R2:</span> Das Modell auf unverrauschten Daten zeigt ein nahezu perfektes Generalisierungsverhalten. Die Funktion wird präzise gelernt, der Unterschied zwischen Trainings- und Testfehler bleibt minimal.</p>
+
+            <p><span class="label">R3:</span> Das Best-Fit-Modell erkennt trotz Rauschen die zugrundeliegende Struktur der Funktion, ohne das Rauschen vollständig zu überlernen. Die Generalisierung ist stabil, der Testfehler bleibt akzeptabel.</p>
+
+            <p><span class="label">R4:</span> Beim Overfit-Modell ist der Trainingsfehler deutlich geringer als der Testfehler. Das Modell passt sich zu stark an die verrauschten Trainingsdaten an und verliert dadurch seine Generalisierungsfähigkeit, ein typischer Fall von Overfitting.</p>
+
+            <p><span class="label">Fazit:</span> Die Datenqualität (R1) hat maßgeblichen Einfluss auf die Modellleistung. Während das Modell bei sauberen Daten sehr gut generalisiert, erfordert das Training mit Rauschen eine sorgfältige Wahl der Parameter. Die grafischen Darstellungen unterstützen das intuitive Verständnis dieser Effekte.</p>
+        </div>
     </section>
+
 
     <section id="doc" class="info-section">
         <div class="info-header">
@@ -105,21 +117,27 @@
             <h2>Dokumentation</h2>
         </div>
 
-        <h3>1) Technisch</h3>
+        <h3>1) Technische Umsetzung</h3>
         <ul>
-            <li><strong>TensorFlow.js:</strong> Modellierung, Training, Evaluation des FFNN</li>
-            <li><strong>Plotly.js:</strong> Interaktive Visualisierung der Daten und Vorhersagen</li>
-            <li><strong>HTML + CSS:</strong> Struktur, Design und Interaktion der Webanwendung</li>
+            <li><strong>Sprache & Umgebung:</strong> Die Webanwendung basiert auf <strong>JavaScript</strong>, <strong>HTML</strong> und <strong>CSS</strong>.</li>
+            <li><strong>Frameworks:</strong>
+                <ul>
+                    <li><a href="https://www.tensorflow.org/js/tutorials" target="_blank" rel="noopener noreferrer"><strong>TensorFlow.js</strong></a>: Modellierung, Training und Auswertung des neuronalen Netzes direkt im Browser</li>
+                    <li><a href="https://plotly.com/javascript/" target="_blank" rel="noopener noreferrer"><strong>Plotly.js</strong></a>: Visualisierung der Datenpunkte und Vorhersagen als interaktive Diagramme</li>
+                </ul>
+            </li>
+            <li><strong>Modell:</strong> Feed-Forward Neural Network mit 2 Hidden Layers à 100 Neuronen, ReLU-Aktivierung, linearer Output</li>
+            <li><strong>Optimierung:</strong> Adam-Optimizer (Lernrate: 0.01), Batch-Größe: 32, Loss: Mean Squared Error (MSE)</li>
+            <li><strong>Daten:</strong> 100 gleichverteilte x-Werte im Bereich [-2, +2]; y-Werte über die Ziel-Funktion berechnet; mit und ohne <code>Gaussian Noise</code> (Varianz 0.05); zufällig aufgeteilt in 50 Trainings- und 50 Testdaten</li>
         </ul>
 
-        <h3>2) Fachlich</h3>
-        <p>
-            Ziel war es, die Approximation einer komplexen Funktion mit einem FFNN zu demonstrieren.
-            Die Architektur bestand aus zwei verborgenen Schichten mit je 100 Neuronen und ReLU-Aktivierung.
-            Die Regression erfolgte mit einem linearen Ausgangsneuron und MSE als Verlustfunktion.
-            Durch gezielte Variation der Trainingsdauer wurden Underfitting, Best-Fit und Overfitting beobachtet.
-            Die daraus gewonnenen Einsichten wurden durch Diagramme unterstützt.
-        </p>
+        <h3>2) Aufbau der Webanwendung</h3>
+        <ul>
+            <li>Gliederung in vier Abschnitte (R1–R4) mit klarer Trennung der Ergebnisse</li>
+            <li>Dynamische Diagramme mit Plotly, Titel und Beschriftung für optimale Lesbarkeit</li>
+            <li>Automatisiertes Modelltraining und Loss-Berechnung direkt im Browser</li>
+            <li>Alle Inhalte sind responsiv und barrierearm aufgebaut</li>
+        </ul>
     </section>
 </main>
 
