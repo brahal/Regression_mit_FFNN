@@ -27,6 +27,7 @@ y(x) = 0.5·(x + 0.8)·(x + 1.8)·(x − 0.2)·(x − 0.3)·(x − 1.9) + 1
 	•	Originaldaten
 	•	Modellvorhersagen für Trainings- und Testdaten
 	•	MSE (Loss) pro Modell
+
 ## 🔧 Verwendete Technologien
     •	HTML, CSS, JS
     •	TensorFlow.js
