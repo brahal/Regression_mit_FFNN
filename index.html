@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -22,11 +21,10 @@
 </nav>
 
 <header>
-    <h1>EA2 – Regression mit FFNN</h1>
+    <h1>EA2 – Regression mit Feed-Forward Neural Network (FFNN)</h1>
 </header>
 
 <main>
-
     <section id="intro">
         <h2>Aufgabenstellung</h2>
         <div>
@@ -112,19 +110,21 @@
                 der unverrauschten Punkte, während rechts die Werte durch das Rauschen deutlich ungleichmäßiger und gestreuter erscheinen.
                 Die gleichmäßige Verteilung der x-Werte im Bereich -2, +2 wurde korrekt umgesetzt und bildet eine sinnvolle Grundlage für das Training der Modelle.
             </p>
+            <br>
 
             <p><span class="label">R2: Modellvorhersage auf unverrauschten Daten</span>
                 Das Modell wurde mit 100 Epochen auf unverrauschten Trainingsdaten trainiert. Da die Daten keine Störungen enthalten, konnte das Netz die zugrunde liegende
                 Funktion sehr gut lernen. Die Vorhersagen stimmen sowohl auf den Trainings- als auch auf den Testdaten gut mit den echten Werten überein.
                 Die Abweichungen bleiben gering und zeigen, dass das Modell korrekt generalisiert.
             </p>
+            <br>
 
             <p><span class="label">R3: Modellverhalten auf verrauschten Daten (Best-Fit)</span>
                 Auch für dieses Modell wurden 100 Epochen genutzt. Trotz des eingebauten Rauschens konnte das Netzwerk die Struktur der Funktion gut erfassen,
                 ohne das Rauschen zu stark zu modellieren. Die Vorhersagen bleiben stabil, der Unterschied zwischen Trainings- und Testfehler ist akzeptabel.
                 Das Modell zeigt eine gute Generalisierungsfähigkeit unter erschwerten Bedingungen.
-
             </p>
+            <br>
 
             <p><span class="label">R4: Overfit-Modell auf verrauschten Daten</span>
                 Für das Overfit-Modell wurden 500 Epochen verwendet, um bewusst ein Überanpassen zu provozieren.
@@ -142,12 +142,12 @@
             <h2>Dokumentation</h2>
         </div>
 
-        <h3>1) Technische Umsetzung</h3>
+        <h3>1) Technisch</h3>
         <ul>
             <li><strong>Sprache und Umgebung:</strong> Die Webanwendung wurde mit <strong>JavaScript</strong>, <strong>HTML</strong> und <strong>CSS</strong> erstellt.
                 Sie läuft vollständig im Browser.
             </li>
-            <li><strong>Frameworks:</strong>
+            <li><strong>Frameworks und  Libraries:</strong>
                 <ul>
                     <li><a href="https://www.tensorflow.org/js/tutorials" target="_blank" rel="noopener noreferrer"><strong>TensorFlow.js</strong></a>:
                         Modellierung, Training und Auswertung des neuronalen Netzes direkt im Browser</li>
@@ -166,11 +166,22 @@
                 </ul>
         </ul>
 
-        <h3>2) Aufbau der Webanwendung</h3>
+        <h3>2) Fachlich</h3>
         <ul>
-            <li>Gliederung in vier Abschnitte (R1–R4) mit klarer Trennung der Ergebnisse</li>
-            <li>Dynamische Diagramme mit Plotly, Titel und Beschriftung für optimale Lesbarkeit</li>
-            <li>Automatisiertes Modelltraining und Loss-Berechnung direkt im Browser</li>
+            <li>Die Anwendung ist in vier Abschnitte unterteilt (R1 bis R4), die die Ergebnisse logisch strukturieren.</li>
+            <li>ede Modellkonfiguration (ohne Rauschen, Best-Fit, Overfit) wird separat trainiert und visualisiert</li>
+            <li>Automatisiertes Training, Vorhersage und Fehlerberechnung finden direkt im Browser statt</li>
+            <li>Alle Inhalte sind barrierearm gestaltet und auf einfache Nutzung ausgerichtet</li>
+        </ul>
+
+        <h3>3) Quellen und Tools</h3>
+        <ul>
+           <li><a href="https://www.tensorflow.org/js/tutorials" target="_blank" rel="noopener noreferrer"><strong>TensorFlow.js Dokumentation</strong></a></li>
+           <li><a href="https://plotly.com/javascript/" target="_blank" rel="noopener noreferrer"><strong>Plotly.js Dokumentation</strong></a></li>
+           <li><a href="https://devdocs.io/css/" target="_blank" rel="noopener noreferrer"><strong>CSS Dokumentation</strong></a></li>
+           <li><a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer"><strong>W3Schools – Webentwicklung</strong></a></li>
+           <li><a href="https://stackoverflow.com/questions" target="_blank" rel="noopener noreferrer"><strong>Problemlösungen</strong></a></li>
+
         </ul>
     </section>
     <hr style="border: none; border-top: 1px solid #ccc; margin: 2rem 0;">

@@ -1,4 +1,3 @@
-// --- Hilfsfunktionen ---
 function trueFunction(x) {
     return 0.5 * (x + 0.8) * (x + 1.8) * (x - 0.2) * (x - 0.3) * (x - 1.9) + 1;
 }
@@ -20,7 +19,7 @@ function generateData(n = 100, noise = false) {
         data.push({ x, y });
     }
 
-    return data; // NICHT sortieren – sonst gleichmäßige Verteilung verloren
+    return data;
 }
 
 function splitData(data) {
@@ -143,7 +142,7 @@ function plotScatter(id, title, train, test) {
             const titleEl = document.getElementById(id + "-title");
             if (titleEl) titleEl.textContent = title;
         });
-    }, 50); // kurze Verzögerung, damit Spinner sichtbar wird
+    }, 50);
 }
 
 
@@ -249,7 +248,7 @@ async function evaluateAndPlot(model, id, data, label) {
             plot_bgcolor: '#ffffff',
             paper_bgcolor: '#ffffff'
         }).then(() => {
-            hideSpinner(id); // Spinner nach dem Plot entfernen
+            hideSpinner(id);
         });
 
         const titleEl = document.getElementById(id + "-title");

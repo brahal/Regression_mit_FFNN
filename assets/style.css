@@ -96,12 +96,12 @@ section {
     max-width: 1300px;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-    border-left: 4px solid var(--accent);
+    border-left: 4px solid #1f5aa6;
 }
 
 #intro h2 {
     font-size: 1.3rem;
-    color: #000000;
+    color: #004080;
     margin-bottom: 1rem;
 }
 
@@ -123,7 +123,8 @@ section {
 
 h2 {
     font-size: 1.4rem;
-    border-left: 4px solid var(--accent);
+    color: #004080;
+    border-left: 4px solid #1f5aa6;
     padding-left: 0.75rem;
     margin-bottom: 1.5rem;
 }
