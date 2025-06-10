@@ -101,7 +101,7 @@ section {
 
 #intro h2 {
     font-size: 1.3rem;
-    color: #004080;
+    color: #004080 !important;
     margin-bottom: 1rem;
 }
 
@@ -123,7 +123,7 @@ section {
 
 h2 {
     font-size: 1.4rem;
-    color: #004080;
+    color: #004080 !important;
     border-left: 4px solid #1f5aa6;
     padding-left: 0.75rem;
     margin-bottom: 1.5rem;
